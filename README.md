@@ -10,4 +10,10 @@ Some goals:
 
 It remains quite uncertain where I will get to and how long this will take. However, I value what I know I will learn a lot in the process and for now, as a student, I value the process more than the final result.  
 
-Mozart said: "Go on a journey." I have no idea what lies ahead. But I’ve taken the first steps. We’re still in the middle of our journey.
+Mozart said: "Go on a journey." I have no idea what lies ahead but I have taken the first steps. We are still in the middle of our journey...  
+
+Some resources:  
+The first corpus (in txt folder):
+https://web.eecs.umich.edu/~lahiri/gutenberg_dataset.html  
+Some helpful lecture videos:
+https://youtu.be/8rXD5-xhemo  
