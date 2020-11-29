@@ -2,10 +2,12 @@
 #include <string>
 #include <fstream>
 #include <unordered_map>
+#include <vector>
 
 #include "dir.h"
 #include "basicops.h"
 using namespace std;
+using namespace nlp;
 
 int main()
 {
@@ -22,12 +24,16 @@ int main()
         {
             while (file >> s)
             {
-                words++;
-                s = processWord(s);
-                if (counts.find(s) == counts.end())
-                    counts[s] = 1;
-                else
-                    counts[s]++;
+                vector<string> p = processWord(s);
+
+                for (string word:p)
+                {
+                    words++;
+                    if (counts.find(word) == counts.end())
+                        counts[word] = 1;
+                    else
+                        counts[word]++;
+                }
             }
             file.close();
         }
