@@ -2,48 +2,36 @@
 #include <string>
 #include <fstream>
 #include <unordered_map>
+#include <map>
 #include <vector>
+#include <unordered_set>
 
 #include "dir.h"
-#include "basicops.h"
+#include "words.h"
 using namespace std;
-using namespace nlp;
+using namespace words;
+
+struct sentence
+{
+    int length; // number of words in the sentence
+    string *words; // words: all lower case, no punctuation
+    char end_punctuation; // '.', '!', '?', etc.
+    pair<size_t, char> punctuation; // pairs (pos, punctuation). 
+    // i.e. The sentence: "I eat dog, you eat dog." will have punctuation (2, ',')
+};
+
 
 int main()
 {
-    unordered_map<string, int> counts;
-    string s;
-    ifstream file;
-    long long words = 0;
-    
-    for (const char* dir:DIRS)
-    {
-        cout << words << " words," << counts.size() << " unique words\n";
-        file.open(dir);
-        if (file.is_open())
-        {
-            while (file >> s)
-            {
-                vector<string> p = processWord(s);
+    freq freqs = get_freq();
+    vector<pair<int,string>> ordered_freq = order_freq(freqs);
 
-                for (string word:p)
-                {
-                    words++;
-                    if (counts.find(word) == counts.end())
-                        counts[word] = 1;
-                    else
-                        counts[word]++;
-                }
-            }
-            file.close();
-        }
-    }
     while (1)
     {
-        cout << "Enter valid word (lowercase): ";
-        string input;
-        cin >> input;
-        cout << counts[input] << " corresponding to " << 100.0*(float)counts[input]/(float)words << "\% of all words\n";
+        cout << "rank: \n";
+        int x;
+        cin >> x;
+        cout << ordered_freq[x].first << ":"<< ordered_freq[x].second << "\n";
     }
     return 0;
 }
